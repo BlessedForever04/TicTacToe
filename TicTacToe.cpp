@@ -6,6 +6,7 @@ int updateboard(int r, int c, int n);
 int validr(int r);
 int validc(int c);
 int main();
+//change
 char board[3][3];
 int r,c, factor;
 void winning(){
