@@ -1,4 +1,5 @@
 #include <iostream>
+#include <cstdlib>
 using namespace std;
 void xmove();
 void ymove();
@@ -32,6 +33,7 @@ void xmove(){
     cin>>c;
     validc(c);
     updateboard(r,c,1);
+    system("cls");
 }
 void ymove(){
 cout<<"Y's tern - "<<endl;
@@ -42,6 +44,7 @@ cout<<"Y's tern - "<<endl;
     cin>>c;
     validc(c);
     updateboard(r,c,0);
+    system("cls");
 }
 int updateboard(int r, int c, int n){
     if(n == 1){
@@ -79,6 +82,8 @@ int validc(int c){
     }
 }
 void display(){
+        cout<<"               Welcome to the game of TicTacToe"<<endl;
+    cout<<"This is two players game where you require one friend for playing it"<<endl;
     for(int i = 0; i<3; i++){
         for(int j = 0; j<3; j++){
             if(board[i][j] == 'A'){
@@ -96,10 +101,9 @@ void display(){
                     cout<<" "<<board[i][j]<<" ";
                 }
             }
-            }cout<<endl;
-            if(i!=3){
-            }
         }
+        cout<<endl;
+    }
 }
 void endgame(){
     for(int i = 0; i<3; i++){
@@ -109,16 +113,16 @@ void endgame(){
             }
             else{
                 if(i==2 && j==2){    
-                cout<<"No one won, would you like to continue?"<<endl;
-                cout<<"1 - continue     2 - Exit"<<endl;
-                int decision;
-                cin>>decision;
-                if(decision==1){
-                    main();
-                }
-                else{
-                    factor = 5;
-                }
+                    cout<<"No one won, would you like to continue?"<<endl;
+                    cout<<"1 - continue     2 - Exit"<<endl;
+                    int decision;
+                    cin>>decision;
+                    if(decision==1){
+                        main();
+                    }
+                    else{
+                        factor = 5;
+                    }
                 }
             }
         }
@@ -127,20 +131,20 @@ void endgame(){
 void game(){
     display();
     while(factor == 0){
-    xmove();
-    display();
-    winning();
-    if(factor == 1){
-        break;
-    }
-    else{
-    endgame();
-        if(factor == 0){
-        ymove();
+        xmove();
         display();
         winning();
-    }
-    }
+        if(factor == 1){
+            break;
+        }
+        else{
+            endgame();
+            if(factor == 0){
+                ymove();
+                display();
+                winning();
+            }
+        }
     }
 }
 
@@ -151,8 +155,5 @@ for(int i = 0; i <3; i++){
         board[i][j] = 'A';
     }
 }
-
-    cout<<"               Welcome to the game of TicTacToe"<<endl;
-    cout<<"This is two players game where you require one friend for playing it"<<endl;
     game();
 }
