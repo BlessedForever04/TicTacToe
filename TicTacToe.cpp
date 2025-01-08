@@ -1,7 +1,6 @@
 #include <iostream>
 #include <cstdlib>
 
-using namespace std;
 
 //Forward declarations
 void Xmove(); // Function to input X's move
@@ -17,12 +16,12 @@ int row,column, factor;
 // Function to check if player is won
 void winning(){
     if((board[0][0]==board[0][1] && board[0][1] == board[0][2] && board[0][2] =='X' || board[1][0]==board[1][1] && board[1][1] == board[1][2] && board[1][2] =='X' || board[2][0]==board[2][1] && board[2][1]==board[2][2] && board[2][2]=='X') || (board[0][0]==board[1][0] && board[1][0]==board[2][0] && board[2][0]=='X' || board[0][1]==board[1][1]&& board[1][1]==board[2][1] && board[2][1]=='X' || board[0][2]==board[1][2]&& board[1][2]==board[2][2] && board[2][2]=='X') || (board[0][0]==board[1][1] && board[1][1]==board[2][2] && board[2][2]=='X' || board[0][2]==board[1][1] && board[1][1]==board[2][0] && board[2][0]=='X')){
-        cout<<"Player X won the game!!"; 
+        std::cout<<"Player X won the game!!"; 
         factor = 1;
     }
     else{
         if((board[0][0]==board[0][1] && board[0][1] == board[0][2] && board[0][2] =='O' || board[1][0]==board[1][1] && board[1][1] == board[1][2] && board[1][2] =='O' || board[2][0]==board[2][1] && board[2][1]==board[2][2] && board[2][2]=='O') || (board[0][0]==board[1][0] && board[1][0]==board[2][0] && board[2][0]=='O' || board[0][1]==board[1][1]&& board[1][1]==board[2][1] && board[2][1]=='O' || board[0][2]==board[1][2]&& board[1][2]==board[2][2] && board[2][2]=='O') || (board[0][0]==board[1][1] && board[1][1]==board[2][2] && board[2][2]=='O' || board[0][2]==board[1][1] && board[1][1]==board[2][0] && board[2][0]=='O')){
-            cout<<"Player O won the game!!";
+            std::cout<<"Player O won the game!!";
             factor = 1;
         }
         else{
@@ -33,12 +32,12 @@ void winning(){
 
 // Xmove() funtion validates X's move
 void Xmove(){
-    cout<<"X's tern - "<<endl;
-    cout<<"Enter row number: ";
-    cin>>row;
+    std::cout<<"X's tern - "<<std::endl;
+    std::cout<<"Enter row number: ";
+    std::cin>>row;
     ValidMove(row);
-    cout<<"Enter column number: ";
-    cin>>column;
+    std::cout<<"Enter column number: ";
+    std::cin>>column;
     ValidMove(column);
     updateboard(row,column,1);
     system("cls");
@@ -49,12 +48,12 @@ void Xmove(){
 
 // Omove() function validates O's move
 void Omove(){
-cout<<"Y's tern - "<<endl;
-    cout<<"Enter row number: ";
-    cin>>row;
+std::cout<<"Y's tern - "<<std::endl;
+    std::cout<<"Enter row number: ";
+    std::cin>>row;
     ValidMove(row);
-    cout<<"Enter column number: ";
-    cin>>column;
+    std::cout<<"Enter column number: ";
+    std::cin>>column;
     ValidMove(column);
     updateboard(row,column,0);
     system("cls");
@@ -65,7 +64,7 @@ int updateboard(int row, int column, int n){
     // n represents from where the function is called, 1 == X's move, 0 == O's move.
     if(n == 1){
         if(board[row-1][column-1] == 'X' || board[row-1][column-1] == 'O'){
-            cout<<"Can't overwrite, enter valid move"<<endl;
+            std::cout<<"Can't overwrite, enter valid move"<<std::endl;
             Xmove();
         }else{
         board[row-1][column-1] = 'X';
@@ -73,7 +72,7 @@ int updateboard(int row, int column, int n){
     }
     else{
         if(board[row-1][column-1] == 'X' || board[row-1][column-1] == 'O'){
-            cout<<"Can't overwrite, enter valid move"<<endl;
+            std::cout<<"Can't overwrite, enter valid move"<<std::endl;
             Omove();
         }
         else{
@@ -85,36 +84,36 @@ int updateboard(int row, int column, int n){
 // ValidMove() checks if the entered move is correct or not
 int ValidMove(int Move){
     if(Move != 1 && Move!=2 && Move!=3){
-        cout<<"Enter valid input!"<<endl;
-        cout<<"Move: ";
-        cin>>Move;
+        std::cout<<"Enter valid input!"<<std::endl;
+        std::cout<<"Move: ";
+        std::cin>>Move;
         ValidMove(Move);
     }
 }
 
 // Display() function to print the whole board along with current positions
 void display(){
-    cout<<"               Welcome to the game of TicTacToe"<<endl;
-    cout<<"This is two players game where you require one friend for playing it"<<endl;
+    std::cout<<"               Welcome to the game of TicTacToe"<<std::endl;
+    std::cout<<"This is two players game where you require one friend for playing it"<<std::endl;
     for(int i = 0; i<3; i++){
         for(int j = 0; j<3; j++){
             if(board[i][j] == 'A'){
                 if(j!=2)
-                cout<<"   |";
+                std::cout<<"   |";
                 else{
-                    cout<<"   ";
+                    std::cout<<"   ";
                 }
             }
             else{
                 if(j!=2){
-                cout<<" "<<board[i][j]<<" |";
+                std::cout<<" "<<board[i][j]<<" |";
                 }
                 else{
-                    cout<<" "<<board[i][j]<<" ";
+                    std::cout<<" "<<board[i][j]<<" ";
                 }
             }
         }
-        cout<<endl;
+        std::cout<<std::endl;
     }
 }
 // enggame() function is checked if the board is completely filled, if it's filled and no winning condition is matched, game repeats
@@ -126,10 +125,10 @@ void endgame(){
             }
             else{
                 if(i==2 && j==2){    
-                    cout<<"No one won, would you like to continue?"<<endl;
-                    cout<<"1 - continue     2 - Exit"<<endl;
+                    std::cout<<"No one won, would you like to continue?"<<std::endl;
+                    std::cout<<"1 - continue     2 - Exit"<<std::endl;
                     int decision;
-                    cin>>decision;
+                    std::cin>>decision;
                     if(decision==1){
                         main();
                     }
