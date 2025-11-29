@@ -21,9 +21,7 @@ Launch the game and read the intro (it’s polite to read).
 Player X goes first. Input the row and column numbers for your move. Example:
 
 <code>X's turn -
-
 Enter row number: 1
-
 Enter column number: 2</code>
 
 Player O, it’s your time to shine
